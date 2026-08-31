@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart City AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- =========================================
+     LOGIN / REGISTER
+========================================== -->
+
+<div id="authSection" class="auth-container">
+
+    <div class="auth-card">
+
+        <h1>🏙️ Smart City AI</h1>
+
+        <p>AI-Powered Civic Complaint Management</p>
+
+        <!-- LOGIN -->
+
+        <div id="loginSection">
+
+            <h2>🔐 Login</h2>
+
+            <form id="loginForm">
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="primary-button">
+                    Login
+                </button>
+
+            </form>
+
+            <p id="loginMessage"></p>
+
+            <p>
+                Don't have an account?
+                <button
+                    type="button"
+                    onclick="showRegister()">
+                    Register
+                </button>
+            </p>
+
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <div id="registerSection" style="display:none;">
+
+            <h2>📝 Register</h2>
+
+            <form id="registerForm">
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Full Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="registerPhone"
+                    placeholder="Phone Number"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="primary-button">
+                    Register
+                </button>
+
+            </form>
+
+            <p id="registerMessage"></p>
+
+            <p>
+                Already have an account?
+                <button
+                    type="button"
+                    onclick="showLogin()">
+                    Login
+                </button>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="user-layout" id="userDashboard" style="display:none;">
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="user-sidebar">
+
+        <div class="sidebar-logo">
+            <h2>🏙️ SMART CITY AI</h2>
+            <p>Civic Complaint Platform</p>
+        </div>
+
+        <nav class="user-nav">
+
+            <button class="user-nav-item active"
+                    onclick="showDashboard()">
+                🏠 Dashboard
+            </button>
+
+            <button class="user-nav-item"
+                    onclick="showReportIssue()">
+                📢 Report Issue
+            </button>
+
+            <button class="user-nav-item"
+                    onclick="showAIDetection()">
+                🤖 AI Detection
+            </button>
+
+            <button class="user-nav-item"
+                    onclick="showMyComplaints()">
+                📋 My Complaints
+            </button>
+
+            <button class="user-nav-item"
+                    onclick="showNotifications()">
+                🔔 Notifications
+            </button>
+
+            <button class="user-nav-item"
+                    onclick="showProfile()">
+                👤 Profile
+            </button>
+
+            <button class="user-nav-item"
+                    onclick="showSettings()">
+                ⚙️ Settings
+            </button>
+
+        </nav>
+
+        <button
+            class="user-logout"
+            id="logoutButton">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN AREA
+    ========================================== -->
+
+    <main class="user-main">
+
+        <!-- TOP BAR -->
+
+        <header class="user-topbar">
+
+            <div>
+                <h1>🏙️ Smart City AI</h1>
+                <p>AI-Powered Civic Complaint Management</p>
+            </div>
+
+            <div class="user-profile-mini">
+                🔔 &nbsp; 👤 User
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             DASHBOARD CONTENT
+        ====================================== -->
+
+        <div class="user-content">
+
+            <!-- WELCOME -->
+
+            <section class="user-welcome">
+
+                <h2>
+                    Good Afternoon, User 👋
+                </h2>
+
+                <p>
+                    Report civic issues and track your complaints.
+                </p>
+
+            </section>
+
+
+            <!-- =================================
+                 STATISTICS
+            ================================== -->
+
+            <section class="user-stats">
+
+                <div class="user-stat-card">
+
+                    <div class="stat-icon">
+                        📋
+                    </div>
+
+                    <div>
+                        <h3>Total Complaints</h3>
+                        <p id="totalComplaints">0</p>
+                    </div>
+
+                </div>
+
+
+                <div class="user-stat-card">
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                    <div>
+                        <h3>Pending</h3>
+                        <p id="pendingComplaints">0</p>
+                    </div>
+
+                </div>
+
+
+                <div class="user-stat-card">
+
+                    <div class="stat-icon">
+                        🔄
+                    </div>
+
+                    <div>
+                        <h3>Active</h3>
+                        <p id="activeComplaints">0</p>
+                    </div>
+
+                </div>
+
+
+                <div class="user-stat-card">
+
+                    <div class="stat-icon">
+                        ✅
+                    </div>
+
+                    <div>
+                        <h3>Resolved</h3>
+                        <p id="resolvedComplaints">0</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 DASHBOARD GRID
+            ================================== -->
+
+            <section class="user-dashboard-grid">
+
+
+                <!-- =============================
+                     AI DETECTION
+                ============================== -->
+
+                <div class="user-dashboard-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h2>🤖 AI Issue Detection</h2>
+
+                            <p>
+                                Upload an image and let AI identify
+                                the civic issue.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="ai-upload-area">
+
+                        <div class="upload-icon">
+                            📷
+                        </div>
+
+                        <p>
+                            Upload a civic issue image
+                        </p>
+
+                        <input
+                            type="file"
+                            id="aiImage"
+                            accept="image/*"
+                        >
+
+                        <button
+                            type="button"
+                            class="primary-button"
+                            onclick="detectCivicIssue()">
+
+                            🤖 Detect Civic Issue
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="aiResult"
+                        class="ai-result">
+                    </div>
+
+
+                    <!-- AI COMPLAINT FORM -->
+
+                    <div
+                        id="aiComplaintForm"
+                        class="ai-complaint-form"
+                        style="display:none;">
+
+                        <h3>
+                            📝 Submit AI-Detected Complaint
+                        </h3>
+
+                        <label>
+                            Complaint Description
+                        </label>
+
+                        <textarea
+                            id="aiComplaintDescription"
+                            rows="4"
+                            placeholder="Describe the issue...">
+                        </textarea>
+
+                        <label>
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="aiComplaintLocation"
+                            placeholder="Enter location"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="submitAIComplaint()">
+
+                            Submit Complaint
+
+                        </button>
+
+                        <div
+                            id="aiComplaintResult">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================
+                     RECENT COMPLAINTS
+                ============================== -->
+
+                <div class="user-dashboard-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h2>📋 My Recent Complaints</h2>
+
+                            <p>
+                                Track your latest civic reports.
+                            </p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="small-button"
+                            onclick="showMyComplaints()">
+
+                            View All
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="recentComplaintsList"
+                        class="recent-complaints">
+
+                        <p class="empty-message">
+                            Loading complaints...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 CIVIC ISSUE SECTORS
+            ================================== -->
+
+            <section class="user-dashboard-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h2>🏙️ Civic Issue Sectors</h2>
+
+                        <p>
+                            Report issues across different
+                            smart city sectors.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="civic-sector-grid">
+
+
+                    <!-- ROAD -->
+
+                    <div class="civic-sector-card road-card">
+
+                        <div class="sector-icon">
+                            🕳️
+                        </div>
+
+                        <h3>
+                            Road & Pothole
+                        </h3>
+
+                        <p>
+                            Report potholes and damaged roads.
+                        </p>
+
+                        <button
+                            class="sector-button"
+                            onclick="selectSector('Road & Pothole')">
+
+                            Report Issue
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- GARBAGE -->
+
+                    <div class="civic-sector-card garbage-card">
+
+                        <div class="sector-icon">
+                            🗑️
+                        </div>
+
+                        <h3>
+                            Garbage Management
+                        </h3>
+
+                        <p>
+                            Report garbage and waste-related issues.
+                        </p>
+
+                        <button
+                            class="sector-button"
+                            onclick="selectSector('Garbage Management')">
+
+                            Report Issue
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- WATER -->
+
+                    <div class="civic-sector-card water-card">
+
+                        <div class="sector-icon">
+                            💧
+                        </div>
+
+                        <h3>
+                            Water & Drainage
+                        </h3>
+
+                        <p>
+                            Report leakage and drainage problems.
+                        </p>
+
+                        <button
+                            class="sector-button"
+                            onclick="selectSector('Water & Drainage')">
+
+                            Report Issue
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- TRAFFIC -->
+
+                    <div class="civic-sector-card traffic-card">
+
+                        <div class="sector-icon">
+                            🚗
+                        </div>
+
+                        <h3>
+                            Traffic & Parking
+                        </h3>
+
+                        <p>
+                            Report illegal parking and traffic issues.
+                        </p>
+
+                        <button
+                            class="sector-button"
+                            onclick="selectSector('Traffic & Parking')">
+
+                            Report Issue
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 REPORT ISSUE
+            ================================== -->
+
+            <section
+                id="reportIssueSection"
+                class="user-dashboard-card page-section"
+                style="display:none;">
+
+                <h2>📢 Report a Civic Issue</h2>
+
+                <p class="section-description">
+                    Submit a complaint to the Smart City administration.
+                </p>
+
+
+                <form id="complaintForm">
+
+                    <input
+                        type="text"
+                        id="complaintTitle"
+                        placeholder="Complaint Title"
+                        required
+                    >
+
+                    <textarea
+                        id="complaintDescription"
+                        placeholder="Describe your complaint"
+                        required>
+                    </textarea>
+
+                    <input
+                        type="text"
+                        id="complaintCategory"
+                        placeholder="Category"
+                        required
+                    >
+
+                    <select
+                        id="complaintPriority"
+                        required>
+
+                        <option value="medium">
+                            Medium
+                        </option>
+
+                        <option value="low">
+                            Low
+                        </option>
+
+                        <option value="high">
+                            High
+                        </option>
+
+                    </select>
+
+                    <input
+                        type="text"
+                        id="complaintLocation"
+                        placeholder="Location"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="primary-button">
+
+                        📢 Submit Complaint
+
+                    </button>
+
+                </form>
+
+                <p id="complaintMessage"></p>
+
+            </section>
+
+
+            <!-- =================================
+                 MY COMPLAINTS
+            ================================== -->
+
+            <section
+                id="myComplaintsSection"
+                class="user-dashboard-card page-section"
+                style="display:none;">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h2>📋 My Complaints</h2>
+
+                        <p>
+                            View and manage your submitted complaints.
+                        </p>
+                    </div>
+
+                    <button
+                        id="loadComplaints"
+                        class="small-button">
+
+                        🔄 Refresh
+
+                    </button>
+
+                </div>
+
+                <div id="complaintsList"></div>
+
+            </section>
+
+
+            <!-- =================================
+                 NOTIFICATIONS
+            ================================== -->
+
+            <section
+                id="notificationsSection"
+                class="user-dashboard-card page-section"
+                style="display:none;">
+
+                <h2>🔔 Notifications</h2>
+
+                <div class="notification-item">
+
+                    <span>📧</span>
+
+                    <div>
+                        <strong>Complaint Updates</strong>
+
+                        <p>
+                            You will receive notifications when
+                            your complaint status changes.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="notification-item">
+
+                    <span>🤖</span>
+
+                    <div>
+                        <strong>AI Detection</strong>
+
+                        <p>
+                            AI-generated recommendations are available
+                            for detected civic issues.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 PROFILE
+            ================================== -->
+
+            <section
+                id="profileSection"
+                class="user-dashboard-card page-section"
+                style="display:none;">
+
+                <h2>👤 Profile</h2>
+
+                <div class="profile-info">
+
+                    <p>
+                        <strong>Name:</strong>
+                        <span id="profileName">User</span>
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        <span id="profileEmail">-</span>
+                    </p>
+
+                    <p>
+                        <strong>Role:</strong>
+                        <span id="profileRole">Citizen</span>
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 SETTINGS
+            ================================== -->
+
+            <section
+                id="settingsSection"
+                class="user-dashboard-card page-section"
+                style="display:none;">
+
+                <h2>⚙️ Settings</h2>
+
+                <p class="section-description">
+                    Manage your Smart City account preferences.
+                </p>
+
+                <div class="setting-item">
+
+                    <div>
+                        <strong>Email Notifications</strong>
+
+                        <p>
+                            Receive complaint status updates.
+                        </p>
+                    </div>
+
+                    <input
+                        type="checkbox"
+                        checked
+                    >
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 AI ASSISTANT
+            ================================== -->
+
+            <section class="ai-assistant">
+
+                <div class="assistant-icon">
+                    🤖
+                </div>
+
+                <div>
+
+                    <h3>
+                        AI Assistant
+                    </h3>
+
+                    <p>
+                        How can I help with your civic issue?
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

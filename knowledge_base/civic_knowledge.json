@@ -1,0 +1,41 @@
+{
+    "pothole": {
+        "issue": "Pothole",
+        "description": "A pothole is a damaged portion of a road surface that can create safety risks for vehicles and pedestrians.",
+        "recommended_action": "Report the pothole with a clear image and accurate location so the responsible road department can inspect and repair it.",
+        "department": "Roads and Municipal Engineering Department",
+        "priority": "high"
+    },
+
+    "road_damage": {
+        "issue": "Road Damage",
+        "description": "Road damage may include cracks, broken surfaces, uneven pavement, or other defects affecting road safety.",
+        "recommended_action": "Submit a complaint with an image and location so the road maintenance team can inspect the damaged area.",
+        "department": "Roads and Municipal Engineering Department",
+        "priority": "high"
+    },
+
+    "damaged_streetlight": {
+        "issue": "Damaged Streetlight",
+        "description": "A damaged or non-functional streetlight can reduce visibility and create safety concerns, particularly at night.",
+        "recommended_action": "Report the streetlight with its location and an image so the electrical or municipal maintenance team can inspect it.",
+        "department": "Electrical and Streetlight Maintenance Department",
+        "priority": "medium"
+    },
+
+    "water_leakage": {
+        "issue": "Water Leakage",
+        "description": "Visible water leakage can waste water and may damage roads, buildings, or surrounding infrastructure.",
+        "recommended_action": "Report the leakage with its exact location and an image so the water department can investigate and repair it.",
+        "department": "Water Supply and Municipal Engineering Department",
+        "priority": "high"
+    },
+
+    "garbage": {
+        "issue": "Garbage Management",
+        "description": "Accumulated or improperly disposed garbage can create health risks, unpleasant surroundings, blocked drainage, and environmental problems.",
+        "recommended_action": "Report the garbage accumulation with a clear image and accurate location so the municipal waste-management team can inspect and arrange collection or cleanup.",
+        "department": "Municipal Waste Management Department",
+        "priority": "high"
+    }
+}

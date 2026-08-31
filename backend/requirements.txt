@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg[binary]
+python-dotenv
+python-jose
+passlib[bcrypt]
+python-multipart
+pydantic[email]
+ultralytics
+huggingface_hub
+transformers
+torch

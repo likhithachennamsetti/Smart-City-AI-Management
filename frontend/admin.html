@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart City AI - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- Prevent favicon 404 -->
+    <link rel="icon" href="data:,">
+
+</head>
+
+
+<body>
+
+
+<div class="admin-layout">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="admin-sidebar">
+
+
+        <div class="sidebar-logo">
+
+            <h2>🏙️ Smart City</h2>
+
+            <p>AI Management Platform</p>
+
+        </div>
+
+
+
+        <nav class="sidebar-nav">
+
+
+            <!-- DASHBOARD -->
+
+            <button
+                class="sidebar-item active"
+                type="button"
+                onclick="scrollToTop()"
+            >
+
+                🏠
+                <span>Dashboard</span>
+
+            </button>
+
+
+
+            <!-- COMPLAINT MANAGEMENT -->
+
+            <button
+                class="sidebar-item"
+                type="button"
+                onclick="scrollToComplaints()"
+            >
+
+                📋
+                <span>Complaint Management</span>
+
+            </button>
+
+
+
+        
+
+
+
+            <!-- =================================================
+                 CIVIC SECTORS
+            ================================================== -->
+
+            <div class="sidebar-section-title">
+
+                CIVIC SECTORS
+
+            </div>
+
+
+
+            <!-- ROAD -->
+
+            <button
+                class="sidebar-item"
+                type="button"
+                onclick="showRoadIssues()"
+            >
+
+                🕳️
+                <span>Road & Pothole</span>
+
+            </button>
+
+
+
+            <!-- GARBAGE -->
+
+            <button
+                class="sidebar-item"
+                type="button"
+                onclick="showGarbageIssues()"
+            >
+
+                🗑️
+                <span>Garbage Management</span>
+
+            </button>
+
+
+
+            <!-- WATER -->
+
+            <button
+                class="sidebar-item"
+                type="button"
+                onclick="showWaterIssues()"
+            >
+
+                💧
+                <span>Water & Drainage</span>
+
+            </button>
+
+
+
+            <!-- STREETLIGHT -->
+
+            <button
+                class="sidebar-item"
+                type="button"
+                onclick="showStreetlightIssues()"
+            >
+
+                💡
+                <span>Damaged Streetlights</span>
+
+            </button>
+
+
+
+            <!-- =================================================
+                 MANAGEMENT
+            ================================================== -->
+
+            <div class="sidebar-section-title">
+
+                MANAGEMENT
+
+            </div>
+
+
+
+            <!-- ISSUE MAP -->
+
+            <button
+                class="sidebar-item"
+                onclick="showIssueMap()"
+            >
+
+                🗺️
+                <span>Issue Map</span>
+
+            </button>
+
+
+
+            <!-- ANALYTICS -->
+
+            <button
+                class="sidebar-item"
+                onclick="showAnalyticsReports()"
+            >
+
+                📊
+                <span>Analytics & Reports</span>
+
+            </button>
+
+
+
+
+
+            <!-- USER MANAGEMENT -->
+
+            <button
+                class="sidebar-item"
+                onclick="quickUserManagement()"
+            >
+
+                👥
+                <span>User Management</span>
+
+            </button>
+
+
+
+            <!-- SETTINGS -->
+
+            <button
+                class="sidebar-item"
+                onclick="openAdminSettings()"
+            >
+
+                ⚙️
+                <span>Settings</span>
+
+            </button>
+
+
+        </nav>
+
+
+
+        <!-- LOGOUT -->
+
+        <button
+            id="adminLogoutButton"
+            class="logout-button"
+            type="button"
+        >
+
+            🚪 Logout
+
+        </button>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="admin-main" id="dashboardTop">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="admin-topbar">
+
+
+            <div>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+                <p>
+                    Smart City Civic Management Overview
+                </p>
+
+            </div>
+
+
+
+            <div class="admin-profile">
+
+                <span>
+                    🔔
+                </span>
+
+                <span>
+                    👨‍💼 Admin
+                </span>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             DASHBOARD CONTENT
+        ================================================== -->
+
+        <div class="dashboard-content">
+
+
+            <!-- =================================================
+                 MAIN COLUMN
+            ================================================== -->
+
+            <section class="dashboard-main-column">
+
+
+                <!-- =================================================
+                     WELCOME
+                ================================================== -->
+
+                <div class="welcome-section">
+
+                    <h2>
+                        Welcome Back, Admin 👋
+                    </h2>
+
+                    <p>
+                        Monitor civic issues and manage citizen
+                        complaints from one place.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     STATISTICS
+                ================================================== -->
+
+                <section class="admin-stats">
+
+
+                    <!-- TOTAL -->
+
+                    <div class="admin-stat-card">
+
+                        <div class="stat-icon">
+                            📋
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Total Complaints
+                            </h3>
+
+                            <p id="totalComplaints">
+                                0
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PENDING -->
+
+                    <div class="admin-stat-card">
+
+                        <div class="stat-icon">
+                            ⏳
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Pending
+                            </h3>
+
+                            <p id="pendingComplaints">
+                                0
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- IN PROGRESS -->
+
+                    <div class="admin-stat-card">
+
+                        <div class="stat-icon">
+                            🔄
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                In Progress
+                            </h3>
+
+                            <p id="inProgressComplaints">
+                                0
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RESOLVED -->
+
+                    <div class="admin-stat-card">
+
+                        <div class="stat-icon">
+                            ✅
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Resolved
+                            </h3>
+
+                            <p id="resolvedComplaints">
+                                0
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     CIVIC ISSUE SECTORS
+                ================================================== -->
+
+                <section
+                    class="dashboard-section"
+                    id="civicSectorsSection"
+                >
+
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <h2>
+                                🏙️ Civic Issue Sectors
+                            </h2>
+
+                            <p>
+                                Overview of the four major civic issues
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="civic-sector-grid">
+
+
+                        <!-- =================================================
+                             ROAD & POTHOLE
+                        ================================================== -->
+
+                        <div
+                            class="civic-sector-card road-card"
+                        >
+
+                            <div class="sector-icon">
+                                🕳️
+                            </div>
+
+
+                            <h3>
+                                Road & Pothole
+                            </h3>
+
+
+                            <p>
+                                Road damage and pothole complaints
+                            </p>
+
+
+                            <div class="sector-count">
+
+                                <span>
+                                    Issues
+                                </span>
+
+                                <strong id="roadIssues">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                onclick="showRoadIssues()"
+                            >
+
+                                View Issues
+
+                            </button>
+
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             GARBAGE
+                        ================================================== -->
+
+                        <div
+                            class="civic-sector-card garbage-card"
+                        >
+
+                            <div class="sector-icon">
+                                🗑️
+                            </div>
+
+
+                            <h3>
+                                Garbage Management
+                            </h3>
+
+
+                            <p>
+                                Waste accumulation and garbage complaints
+                            </p>
+
+
+                            <div class="sector-count">
+
+                                <span>
+                                    Issues
+                                </span>
+
+                                <strong id="garbageIssues">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                onclick="showGarbageIssues()"
+                            >
+
+                                View Issues
+
+                            </button>
+
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             WATER
+                        ================================================== -->
+
+                        <div
+                            class="civic-sector-card water-card"
+                        >
+
+                            <div class="sector-icon">
+                                💧
+                            </div>
+
+
+                            <h3>
+                                Water & Drainage
+                            </h3>
+
+
+                            <p>
+                                Water leakage and drainage complaints
+                            </p>
+
+
+                            <div class="sector-count">
+
+                                <span>
+                                    Issues
+                                </span>
+
+                                <strong id="waterIssues">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                onclick="showWaterIssues()"
+                            >
+
+                                View Issues
+
+                            </button>
+
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             DAMAGED STREETLIGHTS
+                        ================================================== -->
+
+                        <div
+                            class="civic-sector-card streetlight-card"
+                        >
+
+                            <div class="sector-icon">
+                                💡
+                            </div>
+
+
+                            <h3>
+                                Damaged Streetlights
+                            </h3>
+
+
+                            <p>
+                                Damaged and non-functional
+                                streetlight complaints
+                            </p>
+
+
+                            <div class="sector-count">
+
+                                <span>
+                                    Issues
+                                </span>
+
+                                <strong id="streetlightIssues">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                onclick="showStreetlightIssues()"
+                            >
+
+                                View Issues
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     RECENT COMPLAINTS
+                ================================================== -->
+
+                <section
+                    class="dashboard-section complaints-section"
+                    id="complaintsSection"
+                >
+
+
+                    <div class="section-heading">
+
+
+                        <div>
+
+                            <h2>
+                                📋 Recent Complaints
+                            </h2>
+
+                            <p>
+                                Latest citizen complaints
+                            </p>
+
+                        </div>
+
+
+
+                        <button
+                            id="loadAllComplaints"
+                            class="primary-button"
+                            type="button"
+                        >
+
+                            Load All Complaints
+
+                        </button>
+
+
+                    </div>
+
+
+<!-- =================================================
+     ISSUE MAP
+================================================== -->
+
+<section
+    class="dashboard-section"
+    id="issueMapSection"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>🗺️ Issue Map</h2>
+
+            <p>
+                View reported civic issues by location
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="issue-map-container">
+
+        <div class="map-placeholder">
+
+            <div class="map-icon">
+                🗺️
+            </div>
+
+            <h3>
+                Civic Issue Location Map
+            </h3>
+
+            <p>
+                Reported complaint locations will appear here.
+            </p>
+
+            <div
+                id="issueLocationList"
+                class="issue-location-list"
+            >
+
+                <p class="empty-message">
+                    Load complaints to view issue locations.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =================================================
+     ANALYTICS & REPORTS
+================================================== -->
+
+<section
+    class="dashboard-section"
+    id="analyticsReportsSection"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>📊 Analytics & Reports</h2>
+
+            <p>
+                Overview of complaint performance and civic issue statistics
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="analytics-grid">
+
+        <!-- TOTAL -->
+        <div class="analytics-card">
+
+            <span class="analytics-icon">📋</span>
+
+            <div>
+                <span>Total Complaints</span>
+
+                <strong id="reportTotalComplaints">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+        <div class="analytics-card">
+
+            <span class="analytics-icon">⏳</span>
+
+            <div>
+                <span>Pending</span>
+
+                <strong id="reportPendingComplaints">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- IN PROGRESS -->
+        <div class="analytics-card">
+
+            <span class="analytics-icon">🔄</span>
+
+            <div>
+                <span>In Progress</span>
+
+                <strong id="reportInProgressComplaints">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- RESOLVED -->
+        <div class="analytics-card">
+
+            <span class="analytics-icon">✅</span>
+
+            <div>
+                <span>Resolved</span>
+
+                <strong id="reportResolvedComplaints">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CIVIC SECTOR ANALYTICS -->
+
+    <div class="analytics-report-card">
+
+        <h3>
+            🏙️ Civic Sector Distribution
+        </h3>
+
+        <div class="analytics-bars">
+
+            <div class="analytics-bar-row">
+
+                <div>
+                    <span>🕳️ Road & Pothole</span>
+                    <strong id="reportRoadIssues">0</strong>
+                </div>
+
+                <div class="analytics-bar">
+                    <span id="reportRoadBar"></span>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-bar-row">
+
+                <div>
+                    <span>🗑️ Garbage Management</span>
+                    <strong id="reportGarbageIssues">0</strong>
+                </div>
+
+                <div class="analytics-bar">
+                    <span id="reportGarbageBar"></span>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-bar-row">
+
+                <div>
+                    <span>💧 Water & Drainage</span>
+                    <strong id="reportWaterIssues">0</strong>
+                </div>
+
+                <div class="analytics-bar">
+                    <span id="reportWaterBar"></span>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-bar-row">
+
+                <div>
+                    <span>💡 Damaged Streetlights</span>
+                    <strong id="reportStreetlightIssues">0</strong>
+                </div>
+
+                <div class="analytics-bar">
+                    <span id="reportStreetlightBar"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- REPORT SUMMARY -->
+
+    <div class="analytics-report-card">
+
+        <h3>
+            📈 Performance Summary
+        </h3>
+
+        <p id="analyticsSummary">
+            Load complaints to generate the analytics summary.
+        </p>
+
+    </div>
+
+</section>
+<!-- =================================================
+     USER MANAGEMENT
+================================================== -->
+
+<section
+    class="dashboard-section"
+    id="userManagementSection"
+    style="display: none;"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                👥 User Management
+            </h2>
+
+            <p>
+                View registered citizens and administrators
+            </p>
+
+        </div>
+
+        <button
+            class="primary-button"
+            onclick="loadAdminUsers()"
+        >
+            🔄 Refresh Users
+        </button>
+
+    </div>
+
+
+    <div
+        id="adminUsersContainer"
+        class="admin-users-container"
+    >
+
+        <p>
+            Click User Management to load users.
+        </p>
+
+    </div>
+
+</section>
+<!-- =================================================
+     ADMIN SETTINGS
+================================================== -->
+
+<section
+    id="settingsSection"
+    class="dashboard-section settings-section"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>⚙️ Admin Settings</h2>
+
+            <p>
+                Manage your admin dashboard preferences
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="settings-grid">
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="settings-card">
+
+            <div class="settings-icon">
+                👤
+            </div>
+
+            <div>
+
+                <h3>Admin Profile</h3>
+
+                <p>
+                    View your administrator account information.
+                </p>
+
+            </div>
+
+            <button
+                class="settings-button"
+                onclick="showAdminProfile()"
+            >
+                View Profile
+            </button>
+
+        </div>
+
+
+        <!-- NOTIFICATIONS -->
+
+        <div class="settings-card">
+
+            <div class="settings-icon">
+                🔔
+            </div>
+
+            <div>
+
+                <h3>Notification Preferences</h3>
+
+                <p>
+                    Control how admin notifications are displayed.
+                </p>
+
+            </div>
+
+            <button
+                class="settings-button"
+                onclick="toggleAdminNotifications()"
+            >
+                Toggle Notifications
+            </button>
+
+        </div>
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="settings-card">
+
+            <div class="settings-icon">
+                🌐
+            </div>
+
+            <div>
+
+                <h3>System Status</h3>
+
+                <p>
+                    Check the connection between dashboard and backend.
+                </p>
+
+            </div>
+
+            <button
+                class="settings-button"
+                onclick="checkSystemStatus()"
+            >
+                Check Status
+            </button>
+
+        </div>
+
+
+        <!-- LOGOUT -->
+
+        <div class="settings-card">
+
+            <div class="settings-icon">
+                🚪
+            </div>
+
+            <div>
+
+                <h3>Admin Logout</h3>
+
+                <p>
+                    Securely sign out from the admin dashboard.
+                </p>
+
+            </div>
+
+            <button
+                class="settings-button logout-settings-button"
+                onclick="adminSettingsLogout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- SETTINGS MESSAGE -->
+
+    <div
+        id="settingsMessage"
+        class="settings-message"
+    ></div>
+
+</section>
+                    <!-- =================================================
+                         SEARCH / FILTER
+                    ================================================== -->
+
+                    <div class="admin-filters">
+
+
+                        <input
+                            type="text"
+                            id="complaintSearch"
+                            placeholder="🔎 Search complaints..."
+                        >
+
+
+
+                        <select id="statusFilter">
+
+
+                            <option value="all">
+                                All Statuses
+                            </option>
+
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+
+                            <option value="in_progress">
+                                In Progress
+                            </option>
+
+
+                            <option value="resolved">
+                                Resolved
+                            </option>
+
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <!-- COMPLAINT LIST -->
+
+                    <div
+                        id="adminComplaintsList"
+                        class="admin-complaints-list"
+                    >
+
+                        <p class="empty-message">
+                            Click "Load All Complaints" to view complaints.
+                        </p>
+
+                    </div>
+
+
+                </section>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RIGHT PANEL
+            ================================================== -->
+
+            <aside class="dashboard-right-panel">
+
+
+                <!-- =================================================
+                     AI INSIGHTS
+                ================================================== -->
+
+                <section class="right-panel-card">
+
+
+                    <div class="right-panel-title">
+
+
+                        <h2>
+                            🤖 AI Insights
+                        </h2>
+
+
+                        <span class="ai-status">
+                            AI
+                        </span>
+
+
+                    </div>
+
+
+
+                    <!-- HIGH PRIORITY -->
+
+                    <div class="ai-insight">
+
+                        <span class="insight-icon">
+                            🔴
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                High Priority
+                            </strong>
+
+
+                            <p>
+
+                                <span id="highPriorityCount">
+                                    0
+                                </span>
+
+                                complaints require attention
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- MEDIUM PRIORITY -->
+
+                    <div class="ai-insight">
+
+                        <span class="insight-icon">
+                            🟡
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                Medium Priority
+                            </strong>
+
+
+                            <p>
+
+                                <span id="mediumPriorityCount">
+                                    0
+                                </span>
+
+                                complaints identified
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RESOLVED -->
+
+                    <div class="ai-insight">
+
+                        <span class="insight-icon">
+                            🟢
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                Resolved
+                            </strong>
+
+
+                            <p>
+
+                                <span id="aiResolvedCount">
+                                    0
+                                </span>
+
+                                complaints resolved
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RECOMMENDATION -->
+
+                    <div class="ai-recommendation">
+
+
+                        <strong>
+                            💡 Recommendation
+                        </strong>
+
+
+                        <p id="aiRecommendation">
+
+                            Load complaints to generate AI insights.
+
+                        </p>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     COMPLAINT TRENDS
+                ================================================== -->
+
+                <section class="right-panel-card">
+
+
+                    <div class="right-panel-title">
+
+                        <h2>
+                            📊 Complaint Trends
+                        </h2>
+
+                    </div>
+
+
+
+                    <div class="trend-chart">
+
+
+                        <!-- TOTAL -->
+
+                        <div class="trend-item">
+
+                            <div class="trend-label">
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <strong id="trendTotal">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <div class="trend-bar-container">
+
+                                <div
+                                    id="totalTrendBar"
+                                    class="trend-bar total-trend-bar"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PENDING -->
+
+                        <div class="trend-item">
+
+                            <div class="trend-label">
+
+                                <span>
+                                    Pending
+                                </span>
+
+                                <strong id="trendPending">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <div class="trend-bar-container">
+
+                                <div
+                                    id="pendingTrendBar"
+                                    class="trend-bar pending-trend-bar"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RESOLVED -->
+
+                        <div class="trend-item">
+
+                            <div class="trend-label">
+
+                                <span>
+                                    Resolved
+                                </span>
+
+                                <strong id="trendResolved">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <div class="trend-bar-container">
+
+                                <div
+                                    id="resolvedTrendBar"
+                                    class="trend-bar resolved-trend-bar"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- TREND SUMMARY -->
+
+                    <div class="trend-summary">
+
+
+                        <div>
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong id="trendSummaryTotal">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Pending
+                            </span>
+
+                            <strong id="trendSummaryPending">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Resolved
+                            </span>
+
+                            <strong id="trendSummaryResolved">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     PRIORITY OVERVIEW
+                ================================================== -->
+
+                <section class="right-panel-card">
+
+
+                    <div class="right-panel-title">
+
+                        <h2>
+                            🚨 Priority Overview
+                        </h2>
+
+                    </div>
+
+
+
+                    <!-- HIGH -->
+
+                    <div class="priority-row">
+
+                        <div>
+
+                            <span
+                                class="priority-dot high-dot"
+                            ></span>
+
+                            <strong>
+                                High Priority
+                            </strong>
+
+                        </div>
+
+
+                        <strong id="highPriorityTotal">
+                            0
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- MEDIUM -->
+
+                    <div class="priority-row">
+
+                        <div>
+
+                            <span
+                                class="priority-dot medium-dot"
+                            ></span>
+
+                            <strong>
+                                Medium Priority
+                            </strong>
+
+                        </div>
+
+
+                        <strong id="mediumPriorityTotal">
+                            0
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- LOW -->
+
+                    <div class="priority-row">
+
+                        <div>
+
+                            <span
+                                class="priority-dot low-dot"
+                            ></span>
+
+                            <strong>
+                                Low Priority
+                            </strong>
+
+                        </div>
+
+
+                        <strong id="lowPriorityTotal">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     RECENT ALERTS
+                ================================================== -->
+
+                <section class="right-panel-card">
+
+
+                    <div class="right-panel-title">
+
+                        <h2>
+                            🔔 Recent Alerts
+                        </h2>
+
+                    </div>
+
+
+
+                    <div
+                        id="recentAlerts"
+                        class="recent-alerts"
+                    >
+
+
+                        <div class="alert-item">
+
+                            <span>
+                                📢
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    System Ready
+                                </strong>
+
+
+                                <p>
+                                    Complaint monitoring is active.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="alert-item">
+
+                            <span>
+                                🤖
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    AI Monitoring
+                                </strong>
+
+
+                                <p>
+                                    AI insights are ready.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     QUICK ACTIONS
+                ================================================== -->
+
+                <section class="right-panel-card">
+
+
+                    <h2>
+                        ⚡ Quick Actions
+                    </h2>
+
+
+
+                    <button
+                        class="quick-action"
+                        onclick="quickmanageComplaints()"
+                    >
+
+                        📋 Manage Complaints
+
+                    </button>
+
+
+
+                    <button
+                        class="quick-action"
+                        onclick="quickAIAgents()"
+                    >
+
+                        🤖 AI Agents
+
+                    </button>
+
+
+
+                    <button
+                        class="quick-action"
+                        onclick="quickViewAnalytics()"
+                    >
+
+                        📊 View Analytics
+
+                    </button>
+
+
+
+                    <button
+                        class="quick-action"
+                        onclick="quickNotifications()"
+                    >
+
+                        🔔 Notifications
+
+                    </button>
+
+
+                </section>
+
+
+            </aside>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script src="admin.js"></script>
+
+
+</body>
+
+</html>
+<!-- =================================================
+     ISSUE MAP
+================================================== -->
+
+<section
+    class="dashboard-section"
+    id="issueMapSection"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>🗺️ Issue Map</h2>
+
+            <p>
+                View reported civic issues by location
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="issue-map-container">
+
+        <div class="map-placeholder">
+
+            <div class="map-icon">
+                🗺️
+            </div>
+
+            <h3>
+                Civic Issue Location Map
+            </h3>
+
+            <p>
+                Reported complaint locations will appear here.
+            </p>
+
+            <div
+                id="issueLocationList"
+                class="issue-location-list"
+            >
+
+                <p class="empty-message">
+                    Load complaints to view issue locations.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =================================================
+     ANALYTICS & REPORTS
+================================================== -->
+
+<section
+    class="dashboard-section"
+    id="analyticsReportsSection"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>📊 Analytics & Reports</h2>
+
+            <p>
+                Overview of complaint performance and civic issue statistics
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="analytics-grid">
+
+        <!-- TOTAL -->
+        <div class="analytics-card">
+
+            <span class="analytics-icon">📋</span>
+
+            <div>
+                <span>Total Complaints</span>
+
+                <strong id="reportTotalComplaints">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+        <div class="analytics-card">
+
+            <span class="analytics-icon">⏳</span>
+
+            <div>
+                <span>Pending</span>
+
+                <strong id="reportPendingComplaints">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- IN PROGRESS -->
+        <div class="analytics-card">
+
+            <span class="analytics-icon">🔄</span>
+
+            <div>
+                <span>In Progress</span>
+
+                <strong id="reportInProgressComplaints">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- RESOLVED -->
+        <div class="analytics-card">
+
+            <span class="analytics-icon">✅</span>
+
+            <div>
+                <span>Resolved</span>
+
+                <strong id="reportResolvedComplaints">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CIVIC SECTOR ANALYTICS -->
+
+    <div class="analytics-report-card">
+
+        <h3>
+            🏙️ Civic Sector Distribution
+        </h3>
+
+        <div class="analytics-bars">
+
+            <div class="analytics-bar-row">
+
+                <div>
+                    <span>🕳️ Road & Pothole</span>
+                    <strong id="reportRoadIssues">0</strong>
+                </div>
+
+                <div class="analytics-bar">
+                    <span id="reportRoadBar"></span>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-bar-row">
+
+                <div>
+                    <span>🗑️ Garbage Management</span>
+                    <strong id="reportGarbageIssues">0</strong>
+                </div>
+
+                <div class="analytics-bar">
+                    <span id="reportGarbageBar"></span>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-bar-row">
+
+                <div>
+                    <span>💧 Water & Drainage</span>
+                    <strong id="reportWaterIssues">0</strong>
+                </div>
+
+                <div class="analytics-bar">
+                    <span id="reportWaterBar"></span>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-bar-row">
+
+                <div>
+                    <span>💡 Damaged Streetlights</span>
+                    <strong id="reportStreetlightIssues">0</strong>
+                </div>
+
+                <div class="analytics-bar">
+                    <span id="reportStreetlightBar"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- REPORT SUMMARY -->
+
+    <div class="analytics-report-card">
+
+        <h3>
+            📈 Performance Summary
+        </h3>
+
+        <p id="analyticsSummary">
+            Load complaints to generate the analytics summary.
+        </p>
+
+    </div>
+
+</section>
+<!-- =================================================
+     USER MANAGEMENT
+================================================== -->
+
+<section
+    class="dashboard-section"
+    id="userManagementSection"
+    style="display: none;"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                👥 User Management
+            </h2>
+
+            <p>
+                View registered citizens and administrators
+            </p>
+
+        </div>
+
+        <button
+            class="primary-button"
+            onclick="loadAdminUsers()"
+        >
+            🔄 Refresh Users
+        </button>
+
+    </div>
+
+
+    <div
+        id="adminUsersContainer"
+        class="admin-users-container"
+    >
+
+        <p>
+            Click User Management to load users.
+        </p>
+
+    </div>
+
+</section>
+<!-- =================================================
+     ADMIN SETTINGS
+================================================== -->
+
+<section
+    id="settingsSection"
+    class="dashboard-section settings-section"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>⚙️ Admin Settings</h2>
+
+            <p>
+                Manage your admin dashboard preferences
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="settings-grid">
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="settings-card">
+
+            <div class="settings-icon">
+                👤
+            </div>
+
+            <div>
+
+                <h3>Admin Profile</h3>
+
+                <p>
+                    View your administrator account information.
+                </p>
+
+            </div>
+
+            <button
+                class="settings-button"
+                onclick="showAdminProfile()"
+            >
+                View Profile
+            </button>
+
+        </div>
+
+
+        <!-- NOTIFICATIONS -->
+
+        <div class="settings-card">
+
+            <div class="settings-icon">
+                🔔
+            </div>
+
+            <div>
+
+                <h3>Notification Preferences</h3>
+
+                <p>
+                    Control how admin notifications are displayed.
+                </p>
+
+            </div>
+
+            <button
+                class="settings-button"
+                onclick="toggleAdminNotifications()"
+            >
+                Toggle Notifications
+            </button>
+
+        </div>
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="settings-card">
+
+            <div class="settings-icon">
+                🌐
+            </div>
+
+            <div>
+
+                <h3>System Status</h3>
+
+                <p>
+                    Check the connection between dashboard and backend.
+                </p>
+
+            </div>
+
+            <button
+                class="settings-button"
+                onclick="checkSystemStatus()"
+            >
+                Check Status
+            </button>
+
+        </div>
+
+
+        <!-- LOGOUT -->
+
+        <div class="settings-card">
+
+            <div class="settings-icon">
+                🚪
+            </div>
+
+            <div>
+
+                <h3>Admin Logout</h3>
+
+                <p>
+                    Securely sign out from the admin dashboard.
+                </p>
+
+            </div>
+
+            <button
+                class="settings-button logout-settings-button"
+                onclick="adminSettingsLogout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- SETTINGS MESSAGE -->
+
+    <div
+        id="settingsMessage"
+        class="settings-message"
+    ></div>
+
+</section>

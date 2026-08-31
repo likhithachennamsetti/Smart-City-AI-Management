@@ -1,0 +1,981 @@
+/* =========================================================
+   SMART CITY AI - USER FRONTEND
+   MODERN DASHBOARD UI
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+/* =========================================================
+   AUTHENTICATION
+========================================================= */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #eef4ff, #f8fbff);
+}
+
+.auth-card {
+    width: 430px;
+    background: white;
+    padding: 42px;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.10);
+}
+
+.auth-card h1 {
+    color: #2563eb;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.auth-card > p {
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+.auth-card h2 {
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.auth-card input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.auth-card button:not(.primary-button) {
+    border: none;
+    background: none;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button {
+    border: none;
+    padding: 13px 20px;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.primary-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.small-button {
+    border: none;
+    padding: 9px 15px;
+    border-radius: 8px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.small-button:hover {
+    background: #dbeafe;
+}
+
+/* =========================================================
+   USER LAYOUT
+========================================================= */
+
+.user-layout {
+    min-height: 100vh;
+    display: flex;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.user-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #111827;
+    color: white;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar-logo {
+    padding: 10px 15px 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-logo h2 {
+    font-size: 19px;
+    margin-bottom: 6px;
+}
+
+.sidebar-logo p {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.user-nav {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.user-nav-item {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: #cbd5e1;
+    padding: 13px 15px;
+    border-radius: 9px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.user-nav-item:hover {
+    background: #1f2937;
+    color: white;
+}
+
+.user-nav-item.active {
+    background: #2563eb;
+    color: white;
+}
+
+.user-logout {
+    margin-top: auto;
+    border: none;
+    padding: 13px;
+    border-radius: 9px;
+    background: #dc2626;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.user-logout:hover {
+    background: #b91c1c;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.user-main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+}
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.user-topbar {
+    height: 82px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-topbar h1 {
+    font-size: 23px;
+    color: #111827;
+}
+
+.user-topbar p {
+    margin-top: 3px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.user-profile-mini {
+    background: #f3f4f6;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: #374151;
+    font-size: 14px;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.user-content {
+    padding: 30px 35px 50px;
+}
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.user-welcome {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    padding: 28px 30px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.18);
+}
+
+.user-welcome h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.user-welcome p {
+    color: #dbeafe;
+}
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.user-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.user-stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #eff6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+.user-stat-card h3 {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+.user-stat-card p {
+    font-size: 25px;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.user-dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 22px;
+    margin-bottom: 25px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.user-dashboard-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+}
+
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.card-heading h2 {
+    font-size: 18px;
+    color: #111827;
+}
+
+.card-heading p {
+    margin-top: 5px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* =========================================================
+   AI UPLOAD
+========================================================= */
+
+.ai-upload-area {
+    border: 2px dashed #bfdbfe;
+    background: #f8fbff;
+    border-radius: 14px;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+.upload-icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.ai-upload-area p {
+    color: #6b7280;
+    margin-bottom: 15px;
+}
+
+.ai-upload-area input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.ai-result {
+    margin-top: 18px;
+}
+
+.ai-complaint-form {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.ai-complaint-form h3 {
+    margin-bottom: 18px;
+}
+
+.ai-complaint-form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.ai-complaint-form textarea,
+.ai-complaint-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dbe2ea;
+    border-radius: 9px;
+    font-family: inherit;
+}
+
+.ai-complaint-form button {
+    margin-top: 15px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* =========================================================
+   RECENT COMPLAINTS
+========================================================= */
+
+.recent-complaints {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.complaint-item {
+    padding: 18px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 11px;
+    margin-bottom: 12px;
+}
+
+.complaint-item h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.complaint-item p {
+    margin: 7px 0;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+.complaint-item button {
+    margin-top: 10px;
+    margin-right: 8px;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+/* =========================================================
+   CIVIC SECTORS
+========================================================= */
+
+.civic-sector-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.civic-sector-card {
+    padding: 22px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    background: #ffffff;
+    transition: 0.2s;
+}
+
+.civic-sector-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+}
+
+.sector-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.civic-sector-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.civic-sector-card p {
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 40px;
+}
+
+.sector-button {
+    margin-top: 16px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.sector-button:hover {
+    background: #1d4ed8;
+}
+
+/* =========================================================
+   REPORT FORM
+========================================================= */
+
+#complaintForm {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+#complaintForm input,
+#complaintForm textarea,
+#complaintForm select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dbe2ea;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#complaintForm textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+#complaintForm input:focus,
+#complaintForm textarea:focus,
+#complaintForm select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+.notification-item {
+    display: flex;
+    gap: 15px;
+    padding: 17px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 11px;
+    margin-top: 12px;
+}
+
+.notification-item > span {
+    font-size: 25px;
+}
+
+.notification-item strong {
+    color: #111827;
+}
+
+.notification-item p {
+    margin-top: 5px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-info {
+    margin-top: 20px;
+}
+
+.profile-info p {
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-info strong {
+    display: inline-block;
+    width: 100px;
+}
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+.setting-item {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 11px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting-item p {
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* =========================================================
+   AI ASSISTANT
+========================================================= */
+
+.ai-assistant {
+    background: white;
+    border: 1px solid #dbeafe;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.assistant-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #eff6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.ai-assistant h3 {
+    margin-bottom: 5px;
+}
+
+.ai-assistant p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* =========================================================
+   STATUS / PRIORITY
+========================================================= */
+
+.status-badge,
+.priority-badge {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.priority-badge {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* =========================================================
+   EMPTY MESSAGE
+========================================================= */
+
+.empty-message {
+    color: #9ca3af;
+    text-align: center;
+    padding: 25px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .user-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .civic-sector-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .user-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .user-sidebar {
+        width: 210px;
+    }
+
+    .user-main {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+    }
+
+    .user-content {
+        padding: 20px;
+    }
+
+    .user-topbar {
+        padding: 0 20px;
+    }
+
+    .civic-sector-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .user-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   AUTH / DASHBOARD VISIBILITY
+========================================================= */
+
+#authSection {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* =========================================================
+   FINAL LOGIN PAGE DESIGN
+========================================================= */
+
+#authSection {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+
+    margin: 0 !important;
+    padding: 20px !important;
+
+    background: #f4f7fb;
+}
+
+#authSection .auth-card {
+    position: relative;
+
+    width: 100% !important;
+    max-width: 430px !important;
+
+    margin: 0 auto !important;
+    padding: 35px !important;
+
+    background: white;
+    border-radius: 18px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+
+    text-align: center;
+}
+
+/* Login title */
+
+#authSection .auth-card h1 {
+    margin: 0 0 8px;
+    color: #173b63;
+    font-size: 30px;
+}
+
+#authSection .auth-card > p {
+    margin-bottom: 25px;
+    color: #6b7280;
+}
+
+/* Login heading */
+
+#authSection h2 {
+    margin-bottom: 20px;
+    color: #173b63;
+}
+
+/* Login form */
+
+#authSection form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Inputs */
+
+#authSection input {
+    width: 100% !important;
+    height: 48px;
+
+    padding: 12px 15px;
+
+    border: 1px solid #d5dce5;
+    border-radius: 9px;
+
+    background: #f9fafb;
+
+    font-size: 15px;
+}
+
+#authSection input:focus {
+    outline: none;
+    border-color: #173b63;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(23, 59, 99, 0.08);
+}
+
+/* Login button */
+
+#authSection .primary-button {
+    width: 100% !important;
+    height: 48px;
+
+    margin-top: 5px;
+
+    background: #173b63;
+    color: white;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#authSection .primary-button:hover {
+    background: #102d4b;
+}
+
+/* Register/Login switch */
+
+#authSection button:not(.primary-button) {
+    background: transparent;
+    color: #173b63;
+
+    padding: 0;
+    margin: 0;
+
+    font-weight: 600;
+}
+
+#authSection button:not(.primary-button):hover {
+    background: transparent;
+    color: #0d6efd;
+
+    transform: none;
+}
+
+/* Messages */
+
+#authSection #loginMessage,
+#authSection #registerMessage {
+    min-height: 20px;
+    margin-top: 12px;
+}
+
+/* Dashboard must stay behind login */
+
+#userDashboard {
+    position: relative;
+    z-index: 1;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    #authSection {
+        padding: 15px !important;
+    }
+
+    #authSection .auth-card {
+        padding: 25px 20px !important;
+    }
+
+    #authSection .auth-card h1 {
+        font-size: 25px;
+    }
+}
+/* =========================================================
+   COMPLAINT STATUS TRACKER
+   ========================================================= */
+
+.status-tracker {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.status-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.status-step span {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ddd;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.status-step small {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+}
+
+.status-step.completed span {
+    background: #28a745;
+    color: white;
+}
+
+.status-step.completed small {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-line {
+    flex: 1;
+    height: 3px;
+    background: #ddd;
+    margin: 0 5px;
+}
+
+.status-step.completed + .status-line {
+    background: #28a745;
+}
