@@ -3,61 +3,91 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from database import Base, engine
 import models
+
 from auth import router as auth_router
 from complaints import router as complaints_router
 from admin import router as admin_router
-from ai_api import router as ai_router
-from ai.ai_recommendation import router as ai_recommendation_router
-from ai.ai_analyzer import router as ai_analyzer_router
+
+
+# =========================================================
+# CREATE DATABASE TABLES
+# =========================================================
 
 Base.metadata.create_all(bind=engine)
 
 
+# =========================================================
+# FASTAPI APPLICATION
+# =========================================================
+
 app = FastAPI(
     title="Smart City AI Complaint Management",
-    description="AI-powered civic complaint management system",
+    description="Smart City civic complaint management system",
     version="1.0.0"
 )
 
+
+# =========================================================
+# CORS
+# =========================================================
+
 app.add_middleware(
     CORSMiddleware,
+
     allow_origins=[
         "http://127.0.0.1:5500",
-        "http://localhost:5500"
+        "http://localhost:5500",
+
+        # Add your deployed frontend URL here later
+        # "https://your-frontend-url.onrender.com"
     ],
+
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Authentication routes
+
+# =========================================================
+# AUTHENTICATION
+# =========================================================
+
 app.include_router(auth_router)
 
-# Complaint routes
+
+# =========================================================
+# COMPLAINTS
+# =========================================================
+
 app.include_router(complaints_router)
 
-#admin routes
+
+# =========================================================
+# ADMIN
+# =========================================================
+
 app.include_router(admin_router)
 
-# AI Detection routes
-app.include_router(ai_router)
 
-# AI Recommendation routes
-app.include_router(ai_recommendation_router)
-
-# AI Analyzer routes
-app.include_router(ai_analyzer_router)
-
+# =========================================================
+# ROOT
+# =========================================================
 
 @app.get("/")
 def root():
+
     return {
         "message": "Smart City AI Complaint Management API is running!"
     }
 
 
+# =========================================================
+# HEALTH CHECK
+# =========================================================
+
 @app.get("/health")
 def health_check():
+
     return {
         "status": "healthy"
     }
