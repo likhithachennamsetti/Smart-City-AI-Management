@@ -11,3 +11,4 @@ ultralytics
 huggingface_hub
 transformers
 torch
+argon2-cffi
