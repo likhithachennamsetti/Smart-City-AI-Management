@@ -32,6 +32,7 @@ app.add_middleware(
     allow_origins=[
         "http://127.0.0.1:5500",
         "http://localhost:5500",
+        "https://smart-city-frontend-t19z.onrender.com",
 
         # Add your deployed frontend URL here later
         # "https://your-frontend-url.onrender.com"
