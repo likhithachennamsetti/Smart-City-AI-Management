@@ -9,11 +9,6 @@ from complaints import router as complaints_router
 from admin import router as admin_router
 
 
-# =========================================================
-# CREATE DATABASE TABLES
-# =========================================================
-
-Base.metadata.create_all(bind=engine)
 
 
 # =========================================================
